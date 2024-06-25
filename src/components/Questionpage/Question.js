@@ -1,87 +1,123 @@
 import React, { useState } from 'react';
 import './Question.css';
-
+import { useNavigate } from 'react-router-dom';
 const Question = () => {
-  const questions = [
-    "I have ambitious aims of making a difference.",
-    "My leadership journey has progressed as I anticipated.",
-    "I have spent fewer than 4 years in full time service or ministry."
+  const [value, setValue] = useState(null);
+  const [questionNo, setQuestionNo] = useState(0);
+  const [formData, setFormData] = useState([0, 0, 0]);
+  const navigate = useNavigate();
+  const marks = [
+    { value: 0, label: 'Strongly Disagree' },
+    { value: 25, label: 'Disagree' },
+    { value: 50, label: 'Neutral' },
+    { value: 75, label: 'Agree' },
+    { value: 100, label: 'Strongly Agree' },
   ];
 
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [progress, setProgress] = useState(0);
+  const handleNext = (res) => {
+    setFormData((prevFormData) => {
+      const updatedFormData = [...prevFormData];
+      updatedFormData[questionNo] = res;
+      return updatedFormData;
+    });
 
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
-    setProgress((currentQuestion + 1) / questions.length * 100);
-  };
-
-  const handleNext = () => {
-    if (selectedOption) {
-      setCurrentQuestion(currentQuestion + 1);
-      setSelectedOption(null);
+    if (questionNo < questions.length - 1) {
+      setQuestionNo(questionNo + 1);
+      setValue(null);
+    } else if (questionNo === questions.length - 1) {
+      setQuestionNo(questionNo + 1);
     }
   };
 
-  return (
-    <div className="IdealisticContainer">
-      <div className="IdealisticTabs">
-        <div className="IdealisticTab" name="IdealisticTab">
-          <div className="IdealisticProgress">
-            <div className="IdealisticProgressBar" style={{ width: `${progress}%` }}></div>
-          </div>
-          <label htmlFor="IdealisticTab">
-            IDEALISTIC
-          </label>
-        </div>
-        <div className="DisillusionedTab" name="DisillusionedTab">
-          <div className="IdealisticProgress">
-            <div className="IdealisticProgressBar" style={{ width: `${0}%` }}></div>
-          </div>
-          <label htmlFor="DisillusionedTab">
-            DISILLUSIONED
-          </label>
-        </div>
-        <div className="CynicalTab" name="CynicalTab">
-          <div className="IdealisticProgress">
-            <div className="IdealisticProgressBar" style={{ width: `${0}%` }}></div>
-          </div>
-          <label htmlFor="CynicalTab">
-            CYNICAL
-          </label>
-        </div>
-        <div className="HopefullTab" name="HopefullTab">
-          <div className="IdealisticProgress">
-            <div className="IdealisticProgressBar" style={{ width: `${0}%` }}></div>
-          </div>
-          <label htmlFor="HopefullTab">
-            HOPEFUL
-          </label>
-        </div>
-      </div>
-      <div className="IdealisticContent">
+  const handlePrev = () => {
+    if (questionNo > 0) {
+      setQuestionNo(questionNo - 1);
+      setValue(0);
+    }
+    else {
+      navigate("/");
+    }
+  };
 
-        <div className="IdealisticProgressText">{currentQuestion + 1}/{questions.length}</div>
-        <div className="IdealisticQuestion">{questions[currentQuestion]}</div>
-        <div className="IdealisticOptions">
-          {["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"].map((option, index) => (
-            <label key={index}>
-              <input
-                type="radio"
-                name="response"
-                value={index * 25}
-                checked={selectedOption === `${index * 25}`}
-                onChange={handleChange}
-              />
-              <div className="IdealisticOptionCircle"></div>
-              {option}
-            </label>
-          ))}
+  const handleChange = (event) => {
+    setValue(Number(event.target.value));
+    setTimeout(() => {
+      handleNext(Number(event.target.value));
+    }, 500);
+  };
+
+  const questions = [
+    { text: 'I have ambitious aims of making a difference.' },
+    { text: 'My leadership journey has progressed as I anticipated.' },
+    { text: 'I have spent fewer than 4 years in full-time service or ministry.' },
+    { text: 'Done' },
+  ];
+
+  return (
+    <div className="contain-main">
+
+
+      <div className="container">
+        <div className="progress-bars">
+          <div className="progress-bar-container">
+            <div className="progress-bar-default" >
+              <div className="progress-bar" style={{ width: `${(questionNo / 3) * 100}%` }}></div>
+            </div>
+
+            <p className="label">IDEALISTIC</p>
+          </div>
+          <div className="progress-bar-container">
+            <div className="progress-bar-default" >
+              <div className="progress-bar" style={{ width: '0%' }}></div>
+            </div>
+            <p className="label">DISILLUSIONED</p>
+          </div>
+
+          <div className="progress-bar-container">
+            <div className="progress-bar-default" >
+              <div className="progress-bar" style={{ width: '0%' }}></div>
+            </div>
+            <p className="label">CYNICAL</p>
+          </div>
+          <div className="progress-bar-container">
+            <div className="progress-bar-default" >
+              <div className="progress-bar" style={{ width: '0%' }}></div>
+            </div>
+            <p className="label">HOPEFUL</p>
+          </div>
         </div>
-        <div className="navigation">
-          <button className="prev">← PREV</button>
-          <button className="next">NEXT →</button>
+        {questionNo < 3 && (
+          <div className="question-container">
+            <h3 className="question-number">{questionNo + 1}/3</h3>
+            <p className="question-text">{questions[questionNo].text}</p>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              step="25"
+              value={value || 0}
+              onChange={handleChange}
+              className="slider"
+            />
+            <div className="marks">
+              {marks.map((mark) => (
+                <span key={mark.value} className="mark-label">{mark.label}</span>
+              ))}
+            </div>
+          </div>
+        )}
+        {questionNo === 3 && (
+          <div className="results-container">
+            <h1 style={{ margin: 105 }}>Thank you</h1>
+          </div>
+        )}
+        <div className="button-container">
+          <button className="button prev" onClick={handlePrev} >
+            PREV
+          </button>
+          <button className="button next" onClick={() => handleNext(value)} disabled={value === null}>
+            NEXT
+          </button>
         </div>
       </div>
     </div>
