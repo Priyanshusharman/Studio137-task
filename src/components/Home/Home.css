@@ -1,0 +1,158 @@
+.Home {
+    margin-top: 74px;
+    justify-content: center;
+    display: flex;
+    /* margin-left: 400px; */
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 7%;
+    width: 400px;
+    background-color: #ffffff;
+    height: 544px;
+}
+
+.info h1 {
+    font-size: 48px;
+    line-height: 70px;
+}
+
+.info h2 {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: 35px;
+    margin-top: 10px;
+}
+
+
+.Questionbtn {
+    text-decoration: none;
+    background: #e74b16;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    font-size: 21px;
+    font-weight: 600;
+    margin-left: 0;
+    margin-top: 48px;
+    padding: 10px 0 14px;
+    text-align: center;
+    width: 240px;
+}
+
+.thumbnail {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    display: flex;
+    height: 544px;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+
+}
+.time3 {
+    display: flex;
+}
+
+.completIn {
+    display: flex;
+    align-items: center;
+}
+
+.completIn p {
+    margin-top: 48px;
+    margin-left: 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.completIn img {
+    margin-top: 48px;
+    margin-left: 24px;
+}
+.Questionbtn:hover{
+    background-color: aqua;
+}
+
+@media (max-width: 600px) {
+    .Home {
+        margin-top: 10px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+    }
+
+    .thumbnail {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0px;
+        height: auto;
+        width: 91%;
+        margin: 2px 0;
+        border-bottom: 5px solid black;
+    }
+
+    .video {
+        display: flex;
+        justify-content: center;
+    }
+
+    .info {
+        padding: 0 5%;
+        width: 81%;
+        background-color: #ffffff;
+        height: auto;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .info h1 {
+        font-size: 34px;
+        line-height: 1.2;
+        text-align: center;
+        margin: 20px auto 20px auto;
+    }
+
+    .info h1 br {
+        display: none;
+    }
+
+    .info h2 {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.5;
+        text-align: center;
+        margin-top: 10px;
+        margin: 20px auto 20px auto;
+    }
+
+    .time3 {
+        display: flex;
+        justify-content: center;
+        margin: 20px auto 40px auto;
+    }
+
+    .Questionbtn {
+        width: 100%;
+        display: block;
+        margin: 20px auto 20px auto;
+
+    }
+
+    .completIn {
+        justify-content: center;
+        margin-top: 10px;
+        display: block;
+    }
+
+    .completIn img,
+    .completIn p {
+        margin-top: 0;
+    }
+
+}

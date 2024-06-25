@@ -1,0 +1,120 @@
+.IdealisticContainer {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 65%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.IdealisticTabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.IdealisticTab,.CynicalTab,.HopefullTab,.DisillusionedTab {
+    margin-top: 20px;
+    flex: 1;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+.IdealisticContent {
+    width: 60%;
+    margin-top: 20px;
+}
+
+.IdealisticProgress {
+    width: 100%;
+    background: #e0e0e0;
+    border-radius: 5px;
+    height: 5px;
+    margin-bottom: 10px;
+}
+
+.IdealisticProgressBar {
+    height: 100%;
+    background: #17a2b8;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.IdealisticProgressText {
+    font-size: 31px;
+    color: #e74b16;
+    margin-bottom: 20px;
+    margin: 38px;
+}
+
+.IdealisticQuestion {
+    font-size: 24px;
+    margin-bottom: 80px;
+}
+
+.IdealisticOptions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.IdealisticOptions label {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.IdealisticOptions input {
+    display: none;
+}
+
+.IdealisticOptionCircle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #17a2b8;
+    margin-bottom: 10px;
+}
+
+.IdealisticOptions input:checked + .IdealisticOptionCircle {
+    background: #17a2b8;
+}
+.navigation{
+    display: flex;
+    justify-content: space-between;
+    margin:20px auto 20px auto ;
+}
+.navigation button {
+    background:none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.navigation button:hover {
+    background: #e0ebec;
+}
+
+@media (max-width: 600px) {
+    .IdealisticTabs {
+        flex-wrap: wrap;
+    }
+
+    .IdealisticTab,.CynicalTab,.HopefullTab,.DisillusionedTab  {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+}
