@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Home.css"
-import clock from "./clock.svg"
+import clock from "../../fontimage/clock.svg"
 import { Link } from 'react-router-dom'
 const Home = () => {
     return (

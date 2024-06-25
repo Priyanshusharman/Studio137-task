@@ -83,6 +83,7 @@
     width: 75%;
     margin-top: 40px;
     background-color: blue;
+    z-index: 5;
 }
 
 .marks {
@@ -102,16 +103,38 @@
     display: flex;
     justify-content: space-between;
     margin-top: 40px auto;
+    
 }
-
+.button-container img{
+    width: 16px;
+}
 .button {
     padding: 8px 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+}
+.circle-class{
+    width: 16px;
+    background-color: #c0c0c0;
+    border-radius: 5px;
+    border: none;
+    z-index: 1;
+}
+.circle-point{
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: 59px;
+   
 }
